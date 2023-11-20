@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/LocalChat-client/static/css/main.8289a949.css",
-    "main.js": "/LocalChat-client/static/js/main.ceff45b2.js",
+    "main.js": "/LocalChat-client/static/js/main.a30730e1.js",
     "index.html": "/LocalChat-client/index.html",
     "main.8289a949.css.map": "/LocalChat-client/static/css/main.8289a949.css.map",
-    "main.ceff45b2.js.map": "/LocalChat-client/static/js/main.ceff45b2.js.map"
+    "main.a30730e1.js.map": "/LocalChat-client/static/js/main.a30730e1.js.map"
   },
   "entrypoints": [
     "static/css/main.8289a949.css",
-    "static/js/main.ceff45b2.js"
+    "static/js/main.a30730e1.js"
   ]
 }
