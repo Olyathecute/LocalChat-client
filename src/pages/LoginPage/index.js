@@ -14,10 +14,10 @@ function LoginPage() {
     <>
       <Header>Join</Header>
       <Form name='login' initialValues={{ remember: true }} onFinish={onFinish}>
-        <Form.Item name='name' rules={[{ required: true, message: 'Please input your Username!' }]}>
-          <Input prefix={<IconUser />} placeholder='Username' />
+        <Form.Item name='name' rules={[{ required: true, message: 'Please input your name!' }]}>
+          <Input prefix={<IconUser />} placeholder='Your name' />
         </Form.Item>
-        <Form.Item name='room' rules={[{ required: true, message: 'Please input Room!' }]}>
+        <Form.Item name='room' rules={[{ required: true, message: 'Please input a room!' }]}>
           <Input prefix={<IconMail />} placeholder='Room' />
         </Form.Item>
 

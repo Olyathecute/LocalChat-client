@@ -1,13 +1,12 @@
 import { Input, Button } from 'antd'
 import { blue } from '@ant-design/colors'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   width: 80%;
   height: 80vh;
   display: flex;
   flex-direction: column;
-
   border-radius: 8px;
 `
 
@@ -109,15 +108,17 @@ export const TextArea = styled(Input.TextArea)`
   }
 `
 
-export const SendButton = styled(Button)`
+const StyledButton = css`
   border: none;
   box-shadow: none;
   padding: 0 15px;
+`
+
+export const SendButton = styled(Button)`
   height: 100%;
+  ${StyledButton};
 `
 
 export const LeftButton = styled(Button)`
-  border: none;
-  box-shadow: none;
-  padding: 0 15px;
+  ${StyledButton};
 `

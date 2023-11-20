@@ -16,7 +16,6 @@ function ChatPage() {
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search))
     setParams(searchParams)
-
     socket.emit('join', searchParams)
   }, [search])
 

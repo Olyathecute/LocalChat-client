@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+
   background-color: ${blue[2]};
   color: #fff;
 `

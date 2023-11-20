@@ -16,7 +16,7 @@ import {
   SendButton,
 } from './styles'
 
-function ChatBox({ currentRoom, userName, usersInRoom, leftRoom, messages, message, setMessage, sendMessage }) {
+function ChatBox({ currentRoom, userName, usersInRoom, messages, message, setMessage, sendMessage, leftRoom }) {
   const textarea = createRef(null)
 
   return (
