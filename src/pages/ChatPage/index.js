@@ -1,78 +1,59 @@
-import { useEffect } from 'react'
-import { Input, Button as ButtonAntD } from 'antd'
-import { SendOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import socketIO from 'socket.io-client'
+import ChatBox from '../../components/ChatBox'
 
-const { TextArea: TextAreaAntD } = Input
+const socket = socketIO.connect('http://localhost:8080')
 
 function ChatPage() {
-  useEffect(() => {}, [])
+  const navigate = useNavigate()
+  const { search } = useLocation()
+  const [params, setParams] = useState({ room: '', user: '' })
+  const [messages, setMessages] = useState([])
+  const [message, setMessage] = useState('')
+  const [users, setUsers] = useState(0)
+
+  useEffect(() => {
+    const searchParams = Object.fromEntries(new URLSearchParams(search))
+    setParams(searchParams)
+
+    socket.emit('join', searchParams)
+  }, [search])
+
+  useEffect(() => {
+    socket.on('message', (data) => setMessages((state) => [...state, data]))
+  }, [])
+
+  useEffect(() => {
+    socket.on('room', ({ users }) => setUsers(users.length))
+  }, [])
+
+  const leftRoom = () => {
+    socket.emit('left', { params })
+    navigate('/')
+  }
+
+  const sendMessage = (event) => {
+    event.preventDefault()
+
+    if (!message) return
+
+    socket.emit('sendMessage', { message, params })
+    setMessage('')
+  }
 
   return (
-    <Wrapper>
-      <MessageBox></MessageBox>
-      <SendGroup>
-        <TextArea autoSize={{ minRows: 1, maxRows: 4 }} placeholder='Enter your message...' />
-        <Button>
-          <SendOutlined />
-        </Button>
-      </SendGroup>
-    </Wrapper>
+    <ChatBox
+      currentRoom={params.room}
+      userName={params.name}
+      usersInRoom={users}
+      messages={messages}
+      leftRoom={leftRoom}
+      message={message}
+      setMessage={setMessage}
+      sendMessage={sendMessage}
+    />
   )
 }
 
 export default ChatPage
-
-const Wrapper = styled.div`
-  width: 80%;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-`
-
-const MessageBox = styled.div`
-  flex-grow: 1;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-`
-
-const SendGroup = styled.div`
-  display: flex;
-  align-items: flex-end;
-
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border: 1px solid #d9d9d9;
-  border-top: none;
-
-  background-color: #fff;
-`
-
-const TextArea = styled(TextAreaAntD)`
-  background-color: #fff;
-  border: none;
-  border-color: transparent;
-  box-shadow: none;
-
-  &:focus-within {
-    border-color: transparent;
-    box-shadow: none;
-  }
-
-  &::-webkit-scrollbar {
-    background-color: transparent;
-    width: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #d9d9d9;
-    border-radius: 2px;
-  }
-`
-
-const Button = styled(ButtonAntD)`
-  border: none;
-  box-shadow: none;
-  padding: 0 15px;
-`
