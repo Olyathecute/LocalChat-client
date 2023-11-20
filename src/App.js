@@ -8,7 +8,7 @@ function App() {
   return (
     <Container>
       <Routes>
-        <Route path='/LocalChat-client' element={<LoginPage />} />
+        <Route path='/LocalChat-client/' element={<LoginPage />} />
         <Route path='/LocalChat-client/chat' element={<ChatPage />} />
       </Routes>
     </Container>
