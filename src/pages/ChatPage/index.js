@@ -29,7 +29,7 @@ function ChatPage() {
 
   const leftRoom = () => {
     socket.emit('left', { params })
-    navigate('/')
+    navigate('/LocalChat-client')
   }
 
   const sendMessage = (event) => {

@@ -7,7 +7,7 @@ function LoginPage() {
   const [link, setLink] = useState(null)
 
   const onFinish = (event) => {
-    setLink(`/chat?room=${event.room}&name=${event.name}`)
+    setLink(`/LocalChat-client/chat?room=${event.room}&name=${event.name}`)
   }
 
   return (
