@@ -22,7 +22,7 @@ function ChatBox({ currentRoom, userName, usersInRoom, messages, message, setMes
   return (
     <Wrapper>
       <RoomInfo>
-        <RoomName>{currentRoom}</RoomName>
+        <RoomName>Room: {currentRoom}</RoomName>
         <RoomUsers>
           {usersInRoom} user{usersInRoom !== 1 && 's'} in this room
         </RoomUsers>

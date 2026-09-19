@@ -6,7 +6,10 @@ import { Header, Form, Button, IconUser, IconMail } from './styles'
 function LoginPage() {
   const [link, setLink] = useState(null)
 
+  console.log('link', link)
+
   const onFinish = (event) => {
+    console.log('event', event)
     setLink(`/LocalChat-client/chat?room=${event.room}&name=${event.name}`)
   }
 

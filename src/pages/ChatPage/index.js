@@ -3,7 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import socketIO from 'socket.io-client'
 import ChatBox from '../../components/ChatBox'
 
-const socket = socketIO.connect('https://localchat-ch58.onrender.com')
+const socket = socketIO.connect(
+  window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'https://localchat-server-4d9c.onrender.com',
+)
 
 function ChatPage() {
   const navigate = useNavigate()
